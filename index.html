@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>百家樂預測系統</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .grid { display: flex; flex-wrap: wrap; max-width: 600px; }
+        .cell { width: 20px; height: 20px; text-align: center; line-height: 20px; border: 1px solid #ccc; margin: 1px; border-radius: 50%; }
+        .B { background-color: red; color: white; }
+        .P { background-color: blue; color: white; }
+    </style>
+</head>
+<body>
+    <h1>百家樂預測系統</h1>
+    <form method="post">
+        <button name="result" value="B">莊</button>
+        <button name="result" value="P">閒</button>
+        <button name="result" value="T">和</button>
+        <button name="action" value="Undo">復原</button>
+    </form>
+
+    <h2>歷史紀錄</h2>
+    <div>{{ history }}</div>
+
+    <h2>AI 機率預測</h2>
+    <div>莊：{{ prediction.B }}%，閒：{{ prediction.P }}%</div>
+    <div><strong>{{ suggestion }}</strong></div>
+
+    <h2>牌路預測</h2>
+    <ul>
+        {% for key, val in patterns.items() %}
+            <li>{{ key }}：{{ "✅" if val else "❌" }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>大路</h2>
+    <div class="grid">
+        {% for col in roads.big %}
+            {% for cell in col %}
+                <div class="cell {{ cell }}">{{ cell }}</div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+    <h2>大眼仔</h2>
+    <div class="grid">
+        {% for col in roads.eye %}
+            {% for cell in col %}
+                <div class="cell {{ cell }}">{{ cell }}</div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+    <h2>小路</h2>
+    <div class="grid">
+        {% for col in roads.small %}
+            {% for cell in col %}
+                <div class="cell {{ cell }}">{{ cell }}</div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+    <h2>曱甴路</h2>
+    <div class="grid">
+        {% for col in roads.cockroach %}
+            {% for cell in col %}
+                <div class="cell {{ cell }}">{{ cell }}</div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+</body>
+</html>
