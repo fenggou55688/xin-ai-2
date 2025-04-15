@@ -1,0 +1,38 @@
+def generate_big_road(history):
+    max_rows = 6
+    max_cols = 60
+    grid = [['E'] * max_cols for _ in range(max_rows)]
+    x = y = 0
+    last = ''
+    col = 0
+    for h in history:
+        if h == last:
+            y = min(y + 1, max_rows - 1)
+        else:
+            col += 1
+            y = 0
+        x = col
+        if x < max_cols:
+            grid[y][x] = h
+        last = h
+    return grid
+
+def dummy_road(history):
+    max_rows = 6
+    max_cols = 60
+    grid = [['E'] * max_cols for _ in range(max_rows)]
+    for i in range(min(len(history), max_rows * max_cols)):
+        row = i % max_rows
+        col = i // max_rows
+        if col < max_cols:
+            grid[row][col] = history[i]
+    return grid
+
+def generate_all_roadmaps(history):
+    return {
+        "憭扯楝": generate_big_road(history),
+        "撠楝": dummy_road(history),
+        "憭抒隞?: dummy_road(history),
+        "?梁頝?: dummy_road(history),
+    }
+
