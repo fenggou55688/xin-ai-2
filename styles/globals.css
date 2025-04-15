@@ -1,0 +1,6 @@
+/* styles/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 你可以在這裡加自己的自訂樣式 */
